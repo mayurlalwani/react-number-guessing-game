@@ -15,8 +15,7 @@ function Form({returnGuess}){
             
         <form style={{marginTop: '20px'}} onSubmit={handleChange}>
             <input type="number" style={{paddingBottom: '20px'}} name="guess" placeholder="Guess a Number" required />
-            <button>Guess</button>
-            
+            <button>GUESS</button>
             
         </form>
         </div>
