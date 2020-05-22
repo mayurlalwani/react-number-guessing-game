@@ -1,7 +1,82 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+*{
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #32407b;
+    color:white;
+}
+
+body{
+    height: 100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 .container{
     display:flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    border:solid 1px;
+    border-radius: 4px;
+}
+
+.form-container form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border:solid 1px; */
+    width: 500px;
+    height: 300px;
+}
+
+button{
+    margin-top:20px;
+    border-radius: 20px;
+    height: 25%;
+    width: 25%;
+    background-color: #77d8d8;
+    font-size: 25px;
+    cursor: pointer;
+    
+}
+
+button:hover{
+    color:blue;
+    border: none;
+}
+
+input{
+    width:90%;
+    border-color: white;
+    padding-top:20px;
+    font-size: 25px;
+}
+
+input::placeholder{
+    font-size: 25px;
+    text-align: left;
+    padding-top:10px;
+    margin-top:10px;
+    color:white;
+}
+
+.progressBar_history{
+    display:flex;
+    border:1px solid #ccc;
+    border-radius: 4px;
+    min-height: 30px;
+    padding:5px;
+    list-style-type: none;
+    color:black;
+    font-size:22px;    
+}
+
+.progressBar_history li{
+    margin-right: 8px;
+    padding:2px;
+    border-radius: 4px;
 }
 
