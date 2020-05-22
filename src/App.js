@@ -16,7 +16,7 @@ class App extends React.Component {
 
   getFeedback = (diff) => {
     let feedbackMessage;
-    let feedbackColor;
+    let feedbackColor
 
   if (diff === 0) {
     feedbackColor = '#000';
