@@ -18,8 +18,8 @@ body{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    border:solid 1px;
-    border-radius: 4px;
+    border:solid 4px;
+    padding-bottom: 50px;
 }
 
 .form-container form{
@@ -33,18 +33,23 @@ body{
 }
 
 button{
-    margin-top:20px;
-    border-radius: 20px;
-    height: 25%;
-    width: 25%;
+    margin-top:15px;
+    color:#008CBA;
+    height: 15%;
+    width: 90%;
     background-color: #77d8d8;
     font-size: 25px;
     cursor: pointer;
+    font-weight: bolder;
     
 }
-
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 button:hover{
-    color:blue;
+    color:#008CBA;;
     border: none;
 }
 
@@ -65,12 +70,13 @@ input::placeholder{
 
 .progressBar_history{
     display:flex;
-    border:1px solid #ccc;
+    border:2px solid #ccc;
+
     border-radius: 4px;
     min-height: 30px;
     padding:5px;
     list-style-type: none;
-    color:black;
+    
     font-size:22px;    
 }
 
@@ -78,5 +84,10 @@ input::placeholder{
     margin-right: 8px;
     padding:2px;
     border-radius: 4px;
+}
+
+.guesses{
+    /* border:solid 1px; */
+    width: 90%;
 }
 
