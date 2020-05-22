@@ -1,29 +1,56 @@
 import React from 'react';
-import Form from './components/Form'
-// import { Grid, Typography, Paper, Divider} from '@material-ui/core';
-import { generateRandomNumber} from './util';
+import Form from './components/Form';
+import './App.css';
+import { generateRandomNumber } from './util';
 import Progress from './components/Progress';
+
 
 class App extends React.Component {
   state = {
-    randomNumber:generateRandomNumber(),
+    actualNumber:generateRandomNumber(),
     guess:undefined,
     allGuess: [],
-    attempt:0
-
+    attempt:0,
+    feedbackMessage:'Guess a number...'
   }
-  updateAppState = (guess) =>{
-    
-    console.log(guess);
 
-    const diff = Math.abs(guess - this.state.randomNumber);
+  getFeedback = (diff) => {
+    let feedbackMessage;
+    let feedbackColor;
+
+  if (diff === 0) {
+    feedbackColor = '#000';
+    feedbackMessage = 'You Won! Reset the game to play again.';
+  } else if (diff < 4 && diff !== 0) {
+    feedbackColor = '#ff5722';
+    feedbackMessage = 'You are closer!!!';
+  } else if (diff >= 4 && diff < 10) {
+    feedbackColor = '#ff9800';
+    feedbackMessage = 'You are close';
+  } else if (diff >= 10 && diff < 20) {
+    feedbackColor = '#ffeb38';
+    feedbackMessage = 'Small';
+  } else {
+    feedbackColor = '#5bc0de';
+    feedbackMessage = 'Too Small';
+  }
+
+  return {
+    feedbackMessage,
+    feedbackColor,
+  };
+  };
+
+  updateAppState = (guess) => {
+    console.log(this.state.actualNumber)
+    const diff = Math.abs(guess - this.state.actualNumber);
+    const { feedbackMessage, feedbackColor } = this.getFeedback(diff);
     this.setState(prev => ({
       guess,
-      allGuess:[...prev.allGuess,{guess}],
-      attempt: prev.attempt+1
-
+      allGuess:[...prev.allGuess,{guess,feedbackColor}],
+      attempt: prev.attempt+1,
+      feedbackMessage
     }))
-
   }
   render(){
     const guessList = this.state.allGuess.map((item, index)=>(
@@ -32,22 +59,17 @@ class App extends React.Component {
       </li>
     ))
     return (
-      <>
-      {/* <Grid container style={{height: '100vh'}} justify="center" alignItems="center">
-       <Grid item xs={3}>
-           <Paper style={{padding: '50px'}} elevation={6}>
-             <Typography align="center" variant="h2">Hot or Cold</Typography>
-             <Divider style={{margin:'20px 0'}}></Divider> */}
-             <Form returnGuess={value=>this.updateAppState(value)}/>
-            
-            <Progress attempt={this.state.attempt} guessList = {guessList} />
-           {/* </Paper>
-         </Grid>
-       </Grid> */}
-      </>
+      <div className="container">
+        <h1>Number Guessing Game</h1>
+        
+        <div className={`feedback ${this.state.feedbackMessage[0].toLowerCase()}`}>
+              <h2 className="feedback-text">{this.state.feedbackMessage}</h2>
+        </div>
+        <Form returnGuess={value=>this.updateAppState(value)}/>
+        <Progress feedbackMessage = {this.state.feedbackMessage} attempt={this.state.attempt} guessList = {guessList} />
+      </div>
     )
-  }
-  
+  } 
 }
 
 export default App;
