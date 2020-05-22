@@ -5,6 +5,7 @@ import { generateRandomNumber } from './util';
 import Progress from './components/Progress';
 
 
+
 class App extends React.Component {
   state = {
     actualNumber:generateRandomNumber(),
@@ -14,31 +15,32 @@ class App extends React.Component {
     feedbackMessage:'Guess a number...'
   }
 
+
   getFeedback = (diff) => {
     let feedbackMessage;
     let feedbackColor
 
-  if (diff === 0) {
-    feedbackColor = '#000';
-    feedbackMessage = 'You Won! Reset the game to play again.';
-  } else if (diff < 4 && diff !== 0) {
-    feedbackColor = '#ff5722';
-    feedbackMessage = 'You are closer!!!';
-  } else if (diff >= 4 && diff < 10) {
-    feedbackColor = '#ff9800';
-    feedbackMessage = 'You are close';
-  } else if (diff >= 10 && diff < 20) {
-    feedbackColor = '#ffeb38';
-    feedbackMessage = 'Small';
-  } else {
-    feedbackColor = '#5bc0de';
-    feedbackMessage = 'Too Small';
-  }
+    if (diff === 0) {
+      feedbackColor = '#000';
+      feedbackMessage = 'Congratulations!!You Won!!!';
+    } else if (diff < 4 && diff !== 0) {
+      feedbackColor = '#ff5722';
+      feedbackMessage = 'You are closer!!!';
+    } else if (diff >= 4 && diff < 10) {
+      feedbackColor = '#ff9800';
+      feedbackMessage = 'You are close';
+    } else if (diff >= 10 && diff < 20) {
+      feedbackColor = '#ffeb38';
+      feedbackMessage = 'Small';
+    } else {
+      feedbackColor = '#5bc0de';
+      feedbackMessage = 'Too Small';
+    }
 
-  return {
-    feedbackMessage,
-    feedbackColor,
-  };
+    return {
+      feedbackMessage,
+      feedbackColor,
+    };
   };
 
   updateAppState = (guess) => {
@@ -48,11 +50,11 @@ class App extends React.Component {
     this.setState(prev => ({
       guess,
       allGuess:[...prev.allGuess,{guess,feedbackColor}],
-      attempt: prev.attempt+1,
       feedbackMessage
     }))
   }
   render(){
+    
     const guessList = this.state.allGuess.map((item, index)=>(
       <li key={index}>
         <span>{item.guess}</span>
@@ -66,7 +68,9 @@ class App extends React.Component {
               <h2 className="feedback-text">{this.state.feedbackMessage}</h2>
         </div>
         <Form returnGuess={value=>this.updateAppState(value)}/>
-        <Progress feedbackMessage = {this.state.feedbackMessage} attempt={this.state.attempt} guessList = {guessList} />
+        <Progress feedbackMessage = {this.state.feedbackMessage}  attempt={this.state.attempt} guessList = {guessList} />
+        
+        
       </div>
     )
   } 
