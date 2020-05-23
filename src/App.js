@@ -1,20 +1,14 @@
 import React from 'react';
 import Form from './components/Form';
 import './App.css';
-import { generateRandomNumber } from './util';
+// import { generateRandomNumber } from './util';
 import Progress from './components/Progress';
 import PopUp from './components/Instructions';
+import { initialState } from './util';
+
 
 class App extends React.Component {
-  state = {
-    actualNumber:generateRandomNumber(),
-    guess:undefined,
-    allGuess: [],
-    attempt:0,
-    feedbackMessage:'Guess a number...',
-    feedbackColor: '#fff',
-    seen:false
-  }
+  state = initialState();
 
   getFeedback = (diff) => {
     let feedbackMessage;
@@ -44,7 +38,7 @@ class App extends React.Component {
   };
 
   updateAppState = (guess) => {
-    console.log(this.state.actualNumber)
+    console.log(this.state.actualNumber);
     const diff = Math.abs(guess - this.state.actualNumber);
     const { feedbackMessage, feedbackColor } = this.getFeedback(diff);
     this.setState(prev => ({
@@ -62,6 +56,10 @@ class App extends React.Component {
     });
   };
 
+  resetGame = () => {
+    this.setState(initialState());
+  }
+
   render(){
     const guessList = this.state.allGuess.map((item, index)=>(
       <li key={index}>
@@ -75,10 +73,12 @@ class App extends React.Component {
         <div className={`feedback ${this.state.feedbackMessage[0].toLowerCase()}`}>
               <h2>{this.state.feedbackMessage}</h2>
         </div>
-        <Form returnGuess={value=>this.updateAppState(value)}/>
+        <Form feedbackMsg= {this.state.feedbackMessage} attempt={this.state.attempt} returnGuess={value=>this.updateAppState(value)}/>
         <Progress feedbackMessage = {this.state.feedbackMessage}  attempt={this.state.attempt} guessList = {guessList} />
+        
         <button onClick={this.togglePop}>How to Play?</button>
         {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
+        <button onClick={this.resetGame}>Reset Game</button>
       </div>
       
     )
