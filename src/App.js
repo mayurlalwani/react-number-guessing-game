@@ -3,6 +3,7 @@ import Form from './components/Form';
 import './App.css';
 import { generateRandomNumber } from './util';
 import Progress from './components/Progress';
+import PopUp from './components/Instructions';
 
 class App extends React.Component {
   state = {
@@ -12,6 +13,7 @@ class App extends React.Component {
     attempt:0,
     feedbackMessage:'Guess a number...',
     feedbackColor: '#fff',
+    seen:false
   }
 
   getFeedback = (diff) => {
@@ -53,6 +55,13 @@ class App extends React.Component {
       
     }))
   }
+
+  togglePop = () => {
+    this.setState({
+      seen: !this.state.seen
+    });
+  };
+
   render(){
     const guessList = this.state.allGuess.map((item, index)=>(
       <li key={index}>
@@ -68,7 +77,10 @@ class App extends React.Component {
         </div>
         <Form returnGuess={value=>this.updateAppState(value)}/>
         <Progress feedbackMessage = {this.state.feedbackMessage}  attempt={this.state.attempt} guessList = {guessList} />
+        <button onClick={this.togglePop}>How to Play?</button>
+        {this.state.seen ? <PopUp toggle={this.togglePop} /> : null}
       </div>
+      
     )
   } 
 }
