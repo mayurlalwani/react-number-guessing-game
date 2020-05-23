@@ -20,6 +20,7 @@ body{
     align-items: center;
     border:solid 4px;
     padding-bottom: 50px;
+    max-width: 600px;
 }
 
 .form-container form{
@@ -71,23 +72,75 @@ input::placeholder{
 .progressBar_history{
     display:flex;
     border:2px solid #ccc;
-
     border-radius: 4px;
     min-height: 30px;
     padding:5px;
     list-style-type: none;
+    font-size:22px;
+    max-width: 500px;
     
-    font-size:22px;    
 }
 
 .progressBar_history li{
-    margin-right: 8px;
-    padding:2px;
+    /* margin-right: 8px; */
+    padding:5px;
     border-radius: 4px;
 }
 
 .guesses{
     /* border:solid 1px; */
+    
     width: 90%;
 }
 
+.modal {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+  
+  .modal_content {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    width: 40%;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid black;
+    
+  }
+  
+  .close {
+    color: Black;
+    float: right;
+    background-color: white;
+    font-weight: bolder;
+    font-size: xx-large;
+    
+  }
+  
+  .close:hover {
+    color: mediumaquamarine;
+    cursor: pointer;
+    
+  }
+
+.modal_content ol{
+    background-color: white;
+}
+
+.modal_content h2{
+    text-align: center;
+    background-color: white;
+    color:black
+}
+
+.modal_content li{
+    background-color: white;
+    color:black;
+    padding:10px;
+    /* list-style-type: none; */
+}
