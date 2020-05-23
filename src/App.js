@@ -4,21 +4,19 @@ import './App.css';
 import { generateRandomNumber } from './util';
 import Progress from './components/Progress';
 
-
-
 class App extends React.Component {
   state = {
     actualNumber:generateRandomNumber(),
     guess:undefined,
     allGuess: [],
     attempt:0,
-    feedbackMessage:'Guess a number...'
+    feedbackMessage:'Guess a number...',
+    feedbackColor: '#fff',
   }
-
 
   getFeedback = (diff) => {
     let feedbackMessage;
-    let feedbackColor
+    let feedbackColor;
 
     if (diff === 0) {
       feedbackColor = '#000';
@@ -50,11 +48,12 @@ class App extends React.Component {
     this.setState(prev => ({
       guess,
       allGuess:[...prev.allGuess,{guess,feedbackColor}],
-      feedbackMessage
+      attempt: prev.attempt+1,
+      feedbackMessage,
+      
     }))
   }
   render(){
-    
     const guessList = this.state.allGuess.map((item, index)=>(
       <li key={index}>
         <span>{item.guess}</span>
@@ -65,12 +64,10 @@ class App extends React.Component {
         <h1>Number Guessing Game</h1>
         
         <div className={`feedback ${this.state.feedbackMessage[0].toLowerCase()}`}>
-              <h2 className="feedback-text">{this.state.feedbackMessage}</h2>
+              <h2>{this.state.feedbackMessage}</h2>
         </div>
         <Form returnGuess={value=>this.updateAppState(value)}/>
         <Progress feedbackMessage = {this.state.feedbackMessage}  attempt={this.state.attempt} guessList = {guessList} />
-        
-        
       </div>
     )
   } 
