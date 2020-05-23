@@ -11,7 +11,7 @@ export default class PopUp extends Component {
         <div className="modal_content">
           <h2>INSTRUCTIONS</h2>
           <ol>
-              <li>You need to gues a random number between 1 to 100 within 10 tries.</li>
+              <li>You need to guess a random number between 1 to 100 within 10 tries.</li>
               
               <li>You will get feedback on how close or far your guess is in the form of the following keywords ("Small", "Too Small", "You are close", "You are closer!!!").</li>
           </ol>
