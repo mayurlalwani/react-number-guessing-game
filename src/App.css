@@ -56,9 +56,17 @@ button:hover{
 
 input{
     width:90%;
-    border-color: white;
+    border-color: black;
     padding-top:20px;
+    background-color: white;
     font-size: 25px;
+    height: 15px;
+    color:black;
+    padding-bottom: 20px
+}
+
+input:disabled{
+    border-color:red;
 }
 
 input::placeholder{
@@ -66,7 +74,7 @@ input::placeholder{
     text-align: left;
     padding-top:10px;
     margin-top:10px;
-    color:white;
+    /* color:white; */
 }
 
 .progressBar_history{
