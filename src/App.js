@@ -1,11 +1,9 @@
 import React from 'react';
 import Form from './components/Form';
 import './App.css';
-// import { generateRandomNumber } from './util';
 import Progress from './components/Progress';
 import PopUp from './components/Instructions';
 import { initialState } from './util';
-
 
 class App extends React.Component {
   state = initialState();
