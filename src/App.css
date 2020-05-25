@@ -172,4 +172,26 @@ input::placeholder{
    .guesses{
        width:70%;
    }
+
+   .modal {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 80%;
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+  
+  .modal_content {
+    background-color: white;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    
+    width: 50%;
+    padding: 20px;
+    border-radius: 5px;
+    border: 2px solid black;
+    
+  }
+
 }
