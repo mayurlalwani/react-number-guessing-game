@@ -195,3 +195,23 @@ input::placeholder{
   }
 
 }
+
+.green{
+    color:#48F801;
+}
+
+.maroon{
+    color:#F94C4C;
+}
+
+.yellow{
+    color:#F9F94C;
+}
+
+.red{
+    color:#E11F1F;
+}
+
+.white{
+    color:#fff;
+}
