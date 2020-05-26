@@ -13,19 +13,19 @@ class App extends React.Component {
     let feedbackColor;
 
     if (diff === 0) {
-      feedbackColor = '#000';
+      feedbackColor = 'green';
       feedbackMessage = 'Congratulations!!You Won!!!';
     } else if (diff < 4 && diff !== 0) {
-      feedbackColor = '#ff5722';
+      feedbackColor = 'maroon';
       feedbackMessage = 'You are closer!!!';
     } else if (diff >= 4 && diff < 10) {
-      feedbackColor = '#ff9800';
+      feedbackColor = 'yellow';
       feedbackMessage = 'You are close';
     } else if (diff >= 10 && diff < 20) {
-      feedbackColor = '#ffeb38';
+      feedbackColor = 'red';
       feedbackMessage = 'Small';
     } else {
-      feedbackColor = '#5bc0de';
+      feedbackColor = 'white';
       feedbackMessage = 'Too Small';
     }
 
@@ -44,7 +44,7 @@ class App extends React.Component {
       allGuess:[...prev.allGuess,{guess,feedbackColor}],
       attempt: prev.attempt+1,
       feedbackMessage,
-      
+      feedbackColor
     }))
   }
 
@@ -68,8 +68,9 @@ class App extends React.Component {
       <div className="container">
         <h1>Number Guessing Game</h1>
         
-        <div className={`feedback ${this.state.feedbackMessage[0].toLowerCase()}`}>
-              <h2>{this.state.feedbackMessage}</h2>
+        <div className={`${this.state.feedbackMessage.toLowerCase()}`}>
+              <h2 className={this.state.feedbackColor}>{this.state.feedbackMessage}</h2>
+              
         </div>
         <Form feedbackMsg= {this.state.feedbackMessage} attempt={this.state.attempt} returnGuess={value=>this.updateAppState(value)}/>
         <Progress feedbackMessage = {this.state.feedbackMessage}  attempt={this.state.attempt} guessList = {guessList} />
