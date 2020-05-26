@@ -6,5 +6,6 @@ export const initialState = () => ({
     allGuess: [],
     attempt:0,
     feedbackMessage:'Guess a number...',
-    seen:false
+    seen:false,
+    feedbackColor: 'white'
 });
